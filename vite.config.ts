@@ -1,22 +1,16 @@
+// vite.config.ts
 import { defineConfig } from "vite";
+import { viteStaticCopy } from "vite-plugin-static-copy";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import { componentTagger } from "lovable-tagger";
 
-// https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
-  base: "/reaction-time/",          // ← repo slug here
-  server: {
-    host: "::",
-    port: 8080,
-  },
+export default defineConfig({
+  base: "/reaction-time/",
   plugins: [
     react(),
-    mode === "development" && componentTagger(),
-  ].filter(Boolean),
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
-  },
-}));
+    viteStaticCopy({
+      targets: [{ src: "index.html", dest: ".", rename: "404.html" }],
+    }),
+  ],
+  resolve: { alias: { "@": path.resolve(__dirname, "src") } },
+});
