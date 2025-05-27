@@ -1,9 +1,8 @@
-
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Trophy, Zap, Clock, RotateCcw } from 'lucide-react';
+import { Trophy, Zap, Clock, RotateCcw, ExternalLink } from 'lucide-react';
 
 type GameState = 'waiting' | 'ready' | 'active' | 'result' | 'too-early';
 
@@ -268,10 +267,10 @@ const Index = () => {
             onClick={resetStats}
             variant="outline"
             size="lg"
-            className="border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-3 text-lg flex items-center gap-2"
+            className="border-2 border-red-400/50 text-red-300 hover:bg-red-500/20 hover:border-red-400 hover:text-red-200 font-semibold px-8 py-3 text-lg flex items-center gap-3 transition-all duration-300 shadow-lg backdrop-blur-sm bg-red-900/20"
           >
             <RotateCcw className="w-5 h-5" />
-            Reset Stats
+            Reset All Stats
           </Button>
         )}
       </div>
@@ -294,10 +293,24 @@ const Index = () => {
             </p>
           </div>
         </div>
-        <p className="border-t border-gray-700 pt-4">
-          Free online reaction speed test - Test your reflexes and compare with friends! 
-          Share your best scores and challenge others to beat your reaction time.
-        </p>
+        <div className="border-t border-gray-700 pt-4 space-y-2">
+          <p>
+            Free online reaction speed test - Test your reflexes and compare with friends! 
+            Share your best scores and challenge others to beat your reaction time.
+          </p>
+          <p className="flex items-center justify-center gap-2 text-gray-500">
+            Made by 
+            <a 
+              href="https://askharoun.dev" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:text-blue-300 transition-colors duration-300 flex items-center gap-1 underline"
+            >
+              askharoun.dev
+              <ExternalLink className="w-3 h-3" />
+            </a>
+          </p>
+        </div>
       </footer>
     </div>
   );
